@@ -13,11 +13,10 @@ from .catalog import Catalog
 from .collection import Collection, Extent, Provider
 from .common import Link
 from .item import Geometry, Item, ItemCollection
+from .allcollections import AllCollections
 from .stac import STAC
 from .utils import Utils
 from .version import __version__
 
 __all__ = ('__version__',
-           'STAC', 'Catalog', 'Collection', 'Extent',
-           'Provider', 'Link', 'Item', 'ItemCollection',
-           'Geometry')
+           'stac', )

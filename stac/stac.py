@@ -14,6 +14,7 @@ from .catalog import Catalog
 from .collection import Collection
 from .item import ItemCollection
 from .utils import Utils
+from .allcollections import AllCollections
 
 
 class STAC:
@@ -82,9 +83,13 @@ class STAC:
         data = Utils._get(f'{url}/collections{self._access_token}')
         self._collections = {collection['id']: Collection(collection, self._validate) for collection in data['collections']}
 
-        return self._collections
-
-
+        allcollections = []
+        
+        for key, value in self._collections.items():
+            allcollections.append(self.collection(key))
+        
+        return AllCollections(allcollections)
+    
     def collection(self, collection_id):
         """Return the given collection.
 
