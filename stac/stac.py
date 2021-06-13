@@ -82,12 +82,16 @@ class STAC:
         url = '/'.join(self._url.split('/')[:-1]) if self._url.endswith('/stac') else self._url
         data = Utils._get(f'{url}/collections{self._access_token}')
         self._collections = {collection['id']: Collection(collection, self._validate) for collection in data['collections']}
-
+        
+        """Creating an empty list."""
+        
         allcollections = []
         
+        """Filling the empty list with collections objects."""
         for key, value in self._collections.items():
             allcollections.append(self.collection(key))
         
+        """Instantiating the AllCollections class to render to HTML"""
         return AllCollections(allcollections)
     
     def collection(self, collection_id):

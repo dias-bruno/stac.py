@@ -17,16 +17,19 @@ from .utils import Utils
 from .collection import Collection
 
 class AllCollections(list):
-    """ The CCollections object."""
+    """ The AllCollections object."""
     
     def __init__(self, data):
         """Inicialize intance with list data.
         
-        :param data: list with all collections metadata. 
+        :param data: list with all collections objects. 
         
         """
         super(AllCollections, self).__init__(data or [])
 
     def _repr_html_(self): # pragma: no cover
-        """HTML repr."""
+        """HTML repr.
+        
+        An HTML template called Collections was created, which calls the collection template inside it."""
+        
         return Utils.render_html('collections.html', allcollections = self)
